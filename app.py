@@ -1,21 +1,28 @@
-import os
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-app = dash.Dash(__name__)
-server = app.server
-app.layout = html.Div([
-    html.H2('Hello World'),
-    dcc.Dropdown(
-        id='dropdown',
-        options=[{'label': i, 'value': i} for i in ['LA', 'NYC', 'MTL']],
-        value='LA'
-    ),
-    html.Div(id='display-value')
+import plotly.graph_objs as go
+import pandas as pd
+
+import plotly.graph_objs as go
+df = pd.read_csv('covid.csv')
+pv = pd.pivot_table(df, index=['location'], columns=["continent"], values=['total_cases'], aggfunc=sum, fill_value=0)
+trace1 = go.Bar(x=df["continent"], y=df[('total_cases')], name='Asia')
+trace2 = go.Bar(x=df["continent"], y=pv[('total_cases')], name='Eu')
+trace3 = go.Bar(x=df["continent"], y=pv[('total_cases')], name='Af')
+trace4 = go.Bar(x=df["continent"], y=pv[('total_cases')], name='NA')
+app = dash.Dash()
+
+app.layout = html.Div(children=[
+    html.H1(children='Sales Funnel Report'),
+    html.Div(children='''National Sales Funnel Report.'''),
+    dcc.Graph(
+        id='example-graph',
+        figure={
+            'data': [trace1],
+            'layout':
+            go.Layout(title='Order Status by Customer', barmode='stack')
+        })
 ])
-@app.callback(dash.dependencies.Output('display-value', 'children'),
-              [dash.dependencies.Input('dropdown', 'value')])
-def display_value(value):
-    return 'You have selected "{}"'.format(value)
 if __name__ == '__main__':
     app.run_server(debug=True)
