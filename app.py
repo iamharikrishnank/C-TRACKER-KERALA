@@ -26,7 +26,7 @@ app.layout = html.Div(children=[
     html.H4(children='Hot spots in Kerala'),
     dcc.Dropdown(id='dropdown', options=[
         {'label': i, 'value': i} for i in df.district.unique()
-    ], multi=True, placeholder='Filter by state...'),
+    ], multi=True, placeholder='Filter by district...'),
     html.Div(id='table-container')
 ])
 
