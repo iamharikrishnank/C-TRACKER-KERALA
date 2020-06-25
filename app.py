@@ -11,8 +11,8 @@ trace1 = go.Bar(x=df["continent"], y=df[('total_cases')], name='Asia')
 trace2 = go.Bar(x=df["continent"], y=pv[('total_cases')], name='Eu')
 trace3 = go.Bar(x=df["continent"], y=pv[('total_cases')], name='Af')
 trace4 = go.Bar(x=df["continent"], y=pv[('total_cases')], name='NA')
-app = dash.Dash()
-
+app = dash.Dash(__name__)
+server = app.server
 app.layout = html.Div(children=[
     html.H1(children='Sales Funnel Report'),
     html.Div(children='''National Sales Funnel Report.'''),
