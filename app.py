@@ -12,12 +12,12 @@ data=df.lsgd
 dist=df.district
 list=[]
 for i in range (0,len(data)):
-	for j in range (0,len(dist)):
+	
     		sep = ' '
     		value = data[i]
     		dist = dist[j]
     		new_value= value.split(sep, 1)[0] +',Kerala' +''India'
-    	list.append(new_value)
+    		list.append(new_value)
 list_location=[]
 URL = "https://geocode.search.hereapi.com/v1/geocode"
 
