@@ -43,6 +43,15 @@ for a in list:
     latitude = data['items'][0]['position']['lat']
     longitude = data['items'][0]['position']['lng']
     print(latitude,longitude)
+    if (latitude>10.850516 or longitude>76.271080):
+    	a=a.split(sep, 1)[0]
+    	location=a + 'KERALA'
+    	PARAMS = {'apikey':api_key,'q':location}
+    	r = requests.get(url = URL, params = PARAMS) 
+    	data = r.json()
+
+    	latitude = data['items'][0]['position']['lat']
+    	longitude = data['items'][0]['position']['lng'] 
     list_location.append([latitude,longitude])
 
 map_osm=folium.Map(location=[10.850516,76.271080], zoom_start=7.35, tiles='OpenStreetMap')
