@@ -35,7 +35,7 @@ for a in range(1,len(list)):
     list_location.append([latitude,longitude])
 
 map_osm=folium.Map(location=[10.850516,76.271080], zoom_start=7.4, tiles='OpenStreetMap')
-for point in range(0,len(list_location)) :
+for point in range(1,len(list_location)) :
         
       folium.Marker(list_location[point], popup=list[point]).add_to(map_osm)
 
