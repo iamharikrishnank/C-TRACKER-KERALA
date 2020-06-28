@@ -11,10 +11,11 @@ df=pd.DataFrame(x['hotspots'])
 data=df.lsgd
 
 list=[]
-for i in range (0,len(data)):
+for i in range (0,len(df)):
     sep = ' '
-    value = data[i]
-    new_value= value.split(sep, 1)[0] + ',Kerala' + ',India'
+    value = df.lsgd[i]
+    new_value= value.split(sep, 1)[0] + ',' + df.district[i] + ',Kerala' + ',India'
+    print(new_value)
     list.append(new_value)
     
 list_location=[]
