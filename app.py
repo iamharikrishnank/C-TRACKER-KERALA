@@ -3,44 +3,60 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 import requests
-
+import folium
 url = 'https://keralastats.coronasafe.live/hotspots.json'
 r = requests.get(url)
 x = r.json()
 df=pd.DataFrame(x['hotspots'])
-def generate_table(dataframe, max_rows=len(df)):
-    return html.Table(
-        # Header
-        [html.Tr([html.Th(col) for col in dataframe.columns])] +
+data=df.lsgd
 
-        # Body
-        [html.Tr([
-            html.Td(dataframe.iloc[i][col]) for col in dataframe.columns
-        ]) for i in range(min(len(dataframe), max_rows))]
-    )
+list=[]
+for i in range (0,len(data)):
+    sep = ' '
+    value = data[i]
+    new_value= value.split(sep, 1)[0] + ',Kerala'
+    list.append(new_value)
+from opencage.geocoder import OpenCageGeocode
+key = "14329a2c03fc4953a4c1f9b223b21cd4"
+ 
+ 
+ 
+geocoder = OpenCageGeocode(key)
+
+
+list_location=[]
+list_lat=[]
+list_lng=[]
+query = list
+for a in query:
+ 
+        results = geocoder.geocode(a)
+        for b in results:
+    
+ 
+            lat = results[0]['geometry']['lat']
+ 
+            lng = results[0]['geometry']['lng']
+        location=[lat,lng]
+        
+        list_location.append([lat,lng])
+map_osm=folium.Map(location=[10.850516,76.271080], zoom_start=7.4, tiles='OpenStreetMap')
+
+
+
+for point in range(0,len(list_location)) :
+        
+      folium.Marker(list_location[point], popup=list[point]).add_to(map_osm)
+map_osm.save('map.html')
 
 app = dash.Dash(__name__)
 server = app.server
 
-app.layout = html.Div(children=[
-    html.H4(children='Hot spots in Kerala'),
-    dcc.Dropdown(id='dropdown', options=[
-        {'label': i, 'value': i} for i in df.district.unique()
-    ], multi=True, placeholder='Filter by district...'),
-    html.Div(id='table-container')
-])
+app.layout = html.Div([
+    html.H1('Covid'),
+    html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600')])
 
-@app.callback(
-    dash.dependencies.Output('table-container', 'children'),
-    [dash.dependencies.Input('dropdown', 'value')])
-def display_table(dropdown_value):
-    if dropdown_value is None:
-        return generate_table(df)
 
-    dff = df[df.district.str.contains('|'.join(dropdown_value))]
-    return generate_table(dff)
-
-app.css.append_css({"external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"})
 
 if __name__ == '__main__':
     app.run_server(debug=True)
