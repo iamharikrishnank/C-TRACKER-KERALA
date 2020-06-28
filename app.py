@@ -44,6 +44,7 @@ for a in list:
     longitude = data['items'][0]['position']['lng']
     print(latitude,longitude)
     if (latitude>10.850516 or longitude>76.271080):
+        sep= ' '
     	a=a.split(sep, 1)[0]
     	location=a + ' ' + 'KERALA'
     	PARAMS = {'apikey':api_key,'q':location}
