@@ -9,15 +9,13 @@ r = requests.get(url)
 x = r.json()
 df=pd.DataFrame(x['hotspots'])
 data=df.lsgd
-dist=df.district
+
 list=[]
 for i in range (0,len(data)):
-	
-    		sep = ' '
-    		value = data[i]
-    		
-    		new_value= value.split(sep, 1)[0] +',Kerala' +''India'
-    		list.append(new_value)
+    sep = ' '
+    value = data[i]
+    new_value= value.split(sep, 1)[0] + ',Kerala' + ',India'
+    list.append(new_value)
 list_location=[]
 URL = "https://geocode.search.hereapi.com/v1/geocode"
 
