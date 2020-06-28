@@ -11,7 +11,7 @@ df=pd.DataFrame(x['hotspots'])
 data=df.lsgd
 
 list=[]
-for i in range (0,len(data)):
+for i in range(0,len(df)):
     sep = ' '
     value = df.lsgd[i]
     district=df.district[i]
