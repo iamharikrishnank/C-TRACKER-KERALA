@@ -15,7 +15,7 @@ for i in range (0,len(data)):
     sep = ' '
     value = df.lsgd[i]
     district=df.district[i]
-    new_value= value.split(sep, 1)[0] + ',' + district.split(sep, 1)[0] + ',Kerala' 
+    new_value= value.split(sep, 1)[0] +  district.split(sep, 1)[0] + ',Kerala' 
     print(new_value)
     list.append(new_value)
     
