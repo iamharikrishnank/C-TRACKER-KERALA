@@ -45,7 +45,7 @@ for a in list:
     print(latitude,longitude)
     list_location.append([latitude,longitude])
 
-map_osm=folium.Map(location=[10.850516,76.271080], zoom_start=8.25, tiles='OpenStreetMap')
+map_osm=folium.Map(location=[10.850516,76.271080], zoom_start=7.75, tiles='OpenStreetMap')
 for point in range(1,len(list_location)) :
         
       folium.Marker(list_location[point], popup=list[point]).add_to(map_osm)
@@ -60,7 +60,7 @@ server = app.server
 
 
 app.layout = html.Div([
-    html.H1('COVID-19 HOTSPOTS IN KERALA(UPDATED'),
+    html.H1('COVID-19 LATEST HOTSPOTS IN KERALA[UPDATED]'),
     html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600')])
 
 
