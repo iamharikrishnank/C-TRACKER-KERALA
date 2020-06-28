@@ -20,4 +20,4 @@ pandas
 requests
 opencage
 folium
-webbrowser
+
