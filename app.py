@@ -20,7 +20,8 @@ for i in range (0,len(df)):
 list_location=[]
 URL = "https://geocode.search.hereapi.com/v1/geocode"
 
-for a in list:
+for a in range (0,len(list)):
+    print(a)
     location = a #taking user input
     api_key = 'MeIrhhrqJ0h9LaQ7euxAaRPCUokDr_7N0KUVYHd0O0M' # Acquire from developer.here.com
     PARAMS = {'apikey':api_key,'q':location} 
