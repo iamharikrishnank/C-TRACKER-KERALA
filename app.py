@@ -24,7 +24,7 @@ for i in range (0,len(df)):
     sep = ' '
     
     res = re.sub(r"(\w)([A-Z])", r"\1 \2", value) 
-    new_value=  res.split(sep, 1)[0] + '  ' + jilla + '  ' +'Kerala' + '  ' + 'India'
+    new_value=  res.split(sep, 1)[0] + '  ' + jilla + 'India'
     print(new_value)
     list.append(new_value)
 list_location=[]
