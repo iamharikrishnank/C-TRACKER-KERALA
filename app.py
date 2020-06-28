@@ -25,8 +25,8 @@ for i in range (0,len(df)):
     
     res = re.sub(r"(\w)([A-Z])", r"\1 \2", value) 
     new_value=  res.split(sep, 1)[0] +jilla.split(sep, 1)[0] 
-    print(new_value)
-    list.append(new_value)
+    print(res)
+    list.append(res)
 list_location=[]
 URL = "https://geocode.search.hereapi.com/v1/geocode"
 
