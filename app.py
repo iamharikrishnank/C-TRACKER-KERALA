@@ -9,12 +9,12 @@ r = requests.get(url)
 x = r.json()
 df=pd.DataFrame(x['hotspots'])
 data=df.lsgd
-
+dist=df.district
 list=[]
-for i in range (0,len(data)):
+for i in range (0,len(df)):
     sep = ' '
     value = data[i]
-    dist = df.district[i]
+    dist = df[i]
     new_value= value.split(sep, 1)[0] + ',' + dist.split(sep, 1)[0] + ',Kerala' + ',India'
     list.append(new_value)
 list_location=[]
