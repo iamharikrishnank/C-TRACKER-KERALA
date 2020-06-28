@@ -15,7 +15,7 @@ for i in range (0,len(df)):
     sep = ' '
     value = data[i]
     dist = dist[i]
-    new_value= value.split(sep, 1)[0] + ',' + dist + ',Kerala' + ',India'
+    new_value= value.split(sep, 1)[0] + ',India'
     list.append(new_value)
 list_location=[]
 URL = "https://geocode.search.hereapi.com/v1/geocode"
