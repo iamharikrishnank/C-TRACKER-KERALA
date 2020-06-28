@@ -4,6 +4,7 @@ import dash_html_components as html
 import pandas as pd
 import requests
 import folium
+import re
 url = 'https://keralastats.coronasafe.live/hotspots.json'
 r = requests.get(url)
 x = r.json()
@@ -11,10 +12,20 @@ df=pd.DataFrame(x['hotspots'])
 data=df.lsgd
 
 list=[]
-for i in range (0,len(data)):
+def split_uppercase(value):
+    return re.sub(r'([A-Z])', r' \1', value)
+for i in range (0,len(df)):
+    
+    
+
+    value = df.lsgd[i]
+    jilla = df.district[i]
+    
     sep = ' '
-    value = data[i]
-    new_value= value.split(sep, 1)[0] + ',Kerala' + ',India'
+    
+    res = re.sub(r"(\w)([A-Z])", r"\1 \2", value) 
+    new_value= res.split(sep, 1)[0]  + '  '  + jilla
+    print(new_value)
     list.append(new_value)
 list_location=[]
 URL = "https://geocode.search.hereapi.com/v1/geocode"
@@ -46,6 +57,7 @@ map_osm.save('map.html')
 
 app = dash.Dash(__name__)
 server = app.server
+
 
 app.layout = html.Div([
     html.H1('Covid'),
