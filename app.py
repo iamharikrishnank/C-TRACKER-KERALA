@@ -11,11 +11,11 @@ df=pd.DataFrame(x['hotspots'])
 data=df.lsgd
 dist=df.district
 list=[]
-for i in range (0,len(df)):
+for i,j in (data,dist):
     sep = ' '
     value = data[i]
-    dist = dist[i]
-    new_value= value.split(sep, 1)[0] + ',India'
+    dist = dist[j]
+    new_value= value.split(sep, 1)[0] +  ',India'
     list.append(new_value)
 list_location=[]
 URL = "https://geocode.search.hereapi.com/v1/geocode"
