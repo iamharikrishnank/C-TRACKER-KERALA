@@ -14,13 +14,13 @@ list=[]
 for i in range (0,len(data)):
     sep = ' '
     value = data[i]
-    new_value= value.split(sep, 1)[0] + ',Kerala'
+    new_value= value.split(sep, 1)[0] + ',Kerala' + ',India'
     list.append(new_value)
     
 list_location=[]
 URL = "https://geocode.search.hereapi.com/v1/geocode"
 
-for a in range(1,len(list)):
+for a in list:
     location = a #taking user input
     api_key = 'MeIrhhrqJ0h9LaQ7euxAaRPCUokDr_7N0KUVYHd0O0M' # Acquire from developer.here.com
     PARAMS = {'apikey':api_key,'q':location} 
