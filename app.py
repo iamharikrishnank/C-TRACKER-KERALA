@@ -28,8 +28,8 @@ app = dash.Dash(__name__)
 server = app.server
 
 app.layout = html.Div([
-    html.H1('Covid')])
-    
+    html.H1('Covid'),
+    html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600')])
 
 
 
