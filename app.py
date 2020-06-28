@@ -16,6 +16,34 @@ for i in range (0,len(data)):
     value = data[i]
     new_value= value.split(sep, 1)[0] + ',Kerala'
     list.append(new_value)
+    
+list_location=[]
+URL = "https://geocode.search.hereapi.com/v1/geocode"
+location = list[0]
+api_key = 'MeIrhhrqJ0h9LaQ7euxAaRPCUokDr_7N0KUVYHd0O0M' # Acquire from developer.here.com
+PARAMS = {'apikey':api_key,'q':location} 
+
+# sending get request and saving the response as response object 
+r = requests.get(url = URL, params = PARAMS) 
+data = r.json()
+
+latitude = data['items'][0]['position']['lat']
+longitude = data['items'][0]['position']['lng']
+print(latitude,longitude)
+list_location.append([latitude,longitude])
+for a in range(1,len(list)):
+    location = a #taking user input
+    api_key = 'MeIrhhrqJ0h9LaQ7euxAaRPCUokDr_7N0KUVYHd0O0M' # Acquire from developer.here.com
+    PARAMS = {'apikey':api_key,'q':location} 
+
+    # sending get request and saving the response as response object 
+    r = requests.get(url = URL, params = PARAMS) 
+    data = r.json()
+
+    latitude = data['items'][0]['position']['lat']
+    longitude = data['items'][0]['position']['lng']
+    print(latitude,longitude)
+    list_location.append([latitude,longitude])
 
 map_osm=folium.Map(location=[10.850516,76.271080], zoom_start=7.4, tiles='OpenStreetMap')
 
