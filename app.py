@@ -45,7 +45,7 @@ for a in list:
     print(latitude,longitude)
     if (latitude>10.850516 or longitude>76.271080):
     	a=a.split(sep, 1)[0]
-    	location=a + 'KERALA'
+    	location=a + ' ' + 'KERALA'
     	PARAMS = {'apikey':api_key,'q':location}
     	r = requests.get(url = URL, params = PARAMS) 
     	data = r.json()
