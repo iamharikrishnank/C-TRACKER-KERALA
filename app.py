@@ -95,12 +95,12 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'color': colors['text']
     }),
     
-    html.H2(children='LATEST HOTSPOTS IN KERALA[UPDATED]', style={
+    html.H2(children='LATEST COVID-19 HOTSPOTS IN KERALA[UPDATED]', style={
         'textAlign': 'center',
         'color': colors['text']
     }),
     html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600'),
-    html.H2(children='COVID 19 POSITIVE CASES IN KERALA[UPDATED]', style={
+    html.H2(children='COVID-19 POSITIVE CASES IN KERALA[UPDATED]', style={
         'textAlign': 'center',
         'color': colors['text']
     }),
@@ -122,7 +122,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             }
         }
     ),
-    html.H2(children='COVID 19 DAILY TESTS  IN KERALA[UPDATED]', style={
+    html.H2(children='COVID-19 DAILY TESTS  IN KERALA[UPDATED]', style={
         'textAlign': 'center',
         'color': colors['text']
     }),
@@ -144,7 +144,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             }
         }
     ),
-    html.H2(children='COVID 19 DAILY POSITIVE CASES IN KERALA[UPDATED]', style={
+    html.H2(children='COVID-19 DAILY POSITIVE CASES IN KERALA[UPDATED]', style={
         'textAlign': 'center',
         'color': colors['text']
     }),
