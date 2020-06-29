@@ -90,7 +90,11 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             'color': colors['text']
         }
     ),
-    html.Div(children='''C-TRACKER KERALA: A web application  for tracking COVID-19 spread all over Kerala.'''),
+    html.Div(children='C-TRACKER KERALA: A web application  for tracking COVID-19 spread all over Kerala.', style={
+        'textAlign': 'center',
+        'color': colors['text']
+    }),
+    
     html.H2(children='LATEST HOTSPOTS IN KERALA[UPDATED]', style={
         'textAlign': 'center',
         'color': colors['text']
