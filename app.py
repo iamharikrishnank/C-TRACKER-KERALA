@@ -1,10 +1,27 @@
 import dash
+from dash.dependencies import Output, Event
 import dash_core_components as dcc
 import dash_html_components as html
-import pandas as pd
+import plotly
+import random
+import plotly.graph_objs as go
+from collections import deque
+import dash_html_components as html
+import dash_core_components as dcc
 import requests
-import folium
 import re
+import folium
+import pandas as pd
+import os
+
+link = 'https://keralastats.coronasafe.live/testreports.json'
+read = requests.get(link)
+x1 = read.json()
+df1=pd.DataFrame(x1['reports'])
+date=df1['date']
+testcase=df1['today']
+postivecase=df1['positive']
+today_positive=df1['today_positive']
 url = 'https://keralastats.coronasafe.live/hotspots.json'
 r = requests.get(url)
 x = r.json()
@@ -59,17 +76,92 @@ for point in range(1,len(list_location)) :
 
 
 map_osm.save('map.html')
-
-
 app = dash.Dash(__name__)
 server = app.server
-
-
-app.layout = html.Div([
-    html.H1('COVID-19 LATEST HOTSPOTS IN KERALA[UPDATED]'),
-    html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600')])
-
-
+colors = {
+    'background': '#111111',
+    'text': '#7FDBFF'
+}
+app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
+    html.H1(
+        children='COVID-19 KERALA DASH BOARD',
+        style={
+            'textAlign': 'center',
+            'color': colors['text']
+        }
+    ),
+    html.H2(children='LATEST HOTSPOTS IN KERALA[UPDATED]', style={
+        'textAlign': 'center',
+        'color': colors['text']
+    }),
+    html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600'),
+    html.H2(children='COVID 19 POSITIVE CASES IN KERALA[UPDATED]', style={
+        'textAlign': 'center',
+        'color': colors['text']
+    }),
+    dcc.Graph(
+        id='Graph1',
+        figure={
+            'data': [
+                {'x': date, 'y': postivecase, 'type': 'line', 'name': 'Postive Cases'},
+                
+              
+                
+            ],
+            'layout': {
+                'plot_bgcolor': colors['background'],
+                'paper_bgcolor': colors['background'],
+                'font': {
+                    'color': colors['text']
+                }
+            }
+        }
+    ),
+    html.H2(children='COVID 19 DAILY TESTS  IN KERALA[UPDATED]', style={
+        'textAlign': 'center',
+        'color': colors['text']
+    }),
+    dcc.Graph(
+        id='Graph2',
+        figure={
+            'data': [
+                {'x': date, 'y': testcase, 'type': 'line', 'name': 'Test Cases'},
+                
+              
+                
+            ],
+            'layout': {
+                'plot_bgcolor': colors['background'],
+                'paper_bgcolor': colors['background'],
+                'font': {
+                    'color': colors['text']
+                }
+            }
+        }
+    ),
+    html.H2(children='COVID 19 DAILY POSITIVE CASES IN KERALA[UPDATED]', style={
+        'textAlign': 'center',
+        'color': colors['text']
+    }),
+    dcc.Graph(
+        id='Graph3',
+        figure={
+            'data': [
+                {'x': date, 'y': today_positive, 'type': 'line', 'name': 'Daily Postive Cases'},
+                
+              
+                
+            ],
+            'layout': {
+                'plot_bgcolor': colors['background'],
+                'paper_bgcolor': colors['background'],
+                'font': {
+                    'color': colors['text']
+                }
+            }
+        }
+    ),
+])
 
 if __name__ == '__main__':
     app.run_server(debug=True)
