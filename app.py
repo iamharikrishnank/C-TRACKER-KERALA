@@ -84,12 +84,13 @@ colors = {
 }
 app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
     html.H1(
-        children='COVID-19 KERALA DASH BOARD',
+        children='C-TRACKER KERALA DASH BOARD',
         style={
             'textAlign': 'center',
             'color': colors['text']
         }
     ),
+    html.Div(children='''C-TRACKER KERALA: A web application  for tracking COVID-19 spread all over Kerala.'''),
     html.H2(children='LATEST HOTSPOTS IN KERALA[UPDATED]', style={
         'textAlign': 'center',
         'color': colors['text']
