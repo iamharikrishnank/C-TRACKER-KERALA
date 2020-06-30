@@ -68,7 +68,7 @@ for a in list:
    
     list_location.append([latitude,longitude])
 
-map_osm=folium.Map(location=[10.850516,76.271080], zoom_start=7.35, tiles='OpenStreetMap')
+map_osm=folium.Map(location=[10.850516,76.271080], zoom_start=7.49, tiles='OpenStreetMap',max_bounds=True)
 hotspot=folium.map.FeatureGroup()
 state_boundaries = 'state.geojson'
 folium.GeoJson(state_boundaries).add_to(map_osm)
