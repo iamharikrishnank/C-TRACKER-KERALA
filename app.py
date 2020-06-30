@@ -69,11 +69,20 @@ for a in list:
     list_location.append([latitude,longitude])
 
 map_osm=folium.Map(location=[10.850516,76.271080], zoom_start=7.35, tiles='OpenStreetMap')
+state_boundaries = 'state.geojson'
+folium.GeoJson(state_boundaries).add_to(map_osm)
+district_geo='district.geojson'
+folium.GeoJson(district_geo).add_to(map_osm)
 for point in range(1,len(list_location)) :
-        
-      folium.Marker(list_location[point], popup=list[point]).add_to(map_osm)
-
-
+      hotspot.add_child(
+          folium.CircleMarker(
+          list_location[point],radius =5,
+          color = "Red", fill_color= "Red",
+          
+          popup=list[point],
+          )
+      ) 
+      map_osm.add_child(hotspot)
 
 map_osm.save('map.html')
 app = dash.Dash(__name__)
