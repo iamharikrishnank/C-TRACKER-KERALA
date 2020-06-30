@@ -27,8 +27,10 @@ r = requests.get(url)
 x = r.json()
 df=pd.DataFrame(x['hotspots'])
 data=df.lsgd
-
+wards=' '
+wards=df.wards.tolist()
 list=[]
+list_popup=[]
 def split_uppercase(value):
     return re.sub(r'([A-Z])', r' \1', value)
 for i in range (0,len(df)):
@@ -37,13 +39,15 @@ for i in range (0,len(df)):
 
     value = df.lsgd[i]
     jilla = df.district[i]
+    wards = df.wards[i]
     
     sep = ' '
     
     res = re.sub(r"(\w)([A-Z])", r"\1 \2", value) + '  ' +jilla
-    new_value=  res.split(sep, 1)[0] +jilla.split(sep, 1)[0] 
+    new_value=  res.split(sep, 1)[0] +  ','+jilla.split(sep, 1)[0]  + '   ' + 'wards:' + wards
     print(res)
     list.append(res)
+    list_popup.append(new_value)
 list_location=[]
 URL = "https://geocode.search.hereapi.com/v1/geocode"
 
@@ -80,7 +84,7 @@ for point in range(1,len(list_location)) :
           list_location[point],radius =5,
           color = "Red", fill_color= "Red",
           
-          popup=list[point],
+          popup=list_popup[point],
           )
       ) 
       map_osm.add_child(hotspot)
