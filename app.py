@@ -31,6 +31,14 @@ wards=' '
 wards=df.wards.tolist()
 list=[]
 list_popup=[]
+case_url = 'https://keralastats.coronasafe.live/latest.json'
+case_read = requests.get(case_url)
+case_x = case_read.json()
+df_case=pd.DataFrame(case_x['summary'])
+df_case=df_case.transpose()
+df_case['death']=df_case['confirmed']-df_case['active']-df_case['recovered']
+data_case={'ACTIVE': df_case.active.sum(),'RECOVERED': df_case.recovered.sum(),'CONFIRMED': df_case.confirmed.sum(), 'DEATH': df_case.death.sum()}
+data_case=pd.DataFrame(data_case,index=[0])
 def split_uppercase(value):
     return re.sub(r'([A-Z])', r' \1', value)
 for i in range (0,len(df)):
@@ -108,6 +116,30 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'textAlign': 'center',
         'color': colors['text']
     }),
+        dash_table.DataTable(
+    data=data_case.to_dict('records'),
+    columns=[{'id': c, 'name': c} for c in data_case.columns],
+
+    style_as_list_view=True,
+    style_header={'backgroundColor': 'rgb(30, 30, 30)',
+    		   'fontWeight': 'bold',
+    		   'textAlign': 'center',
+        	   'color': 'white',
+    		   'font-family':'Times New Roman',
+            	   'fontSize':20
+            	   
+    },
+    
+    style_cell={
+        'backgroundColor': 'rgb(50, 50, 50)',
+        'textAlign': 'center',
+        'color': 'white',
+        'fontWeight': 'bold',
+        'font-family':'Times New Roman',
+        'fontSize':20, 
+        
+    },
+    ),
     
     html.H2(children='LATEST COVID-19 HOTSPOTS IN KERALA[UPDATED]', style={
         'textAlign': 'center',
