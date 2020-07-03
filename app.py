@@ -36,6 +36,7 @@ case_read = requests.get(case_url)
 case_x = case_read.json()
 df_case=pd.DataFrame(case_x['summary'])
 df_case=df_case.transpose()
+df_case['death']=df_case['confirmed']-df_case['active']-df_case['recovered']
 df_case_today=pd.DataFrame(case_x['delta'])
 
 df_case_today=df_case_today.transpose()
