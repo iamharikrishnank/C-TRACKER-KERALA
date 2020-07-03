@@ -37,6 +37,7 @@ case_x = case_read.json()
 df_case=pd.DataFrame(case_x['summary'])
 df_case=df_case.transpose()
 df_case['death']=df_case['confirmed']-df_case['active']-df_case['recovered']
+sorted_df_case=df_case.sort_values(by=['total_obs'], ascending=False)
 df_case_today=pd.DataFrame(case_x['delta'])
 
 df_case_today=df_case_today.transpose()
