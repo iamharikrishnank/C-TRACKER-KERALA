@@ -149,7 +149,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'color': colors['text']
     }),
         dash_table.DataTable(
-    data=data_case.to_dict('records'),
+    data=data_case.to_dict('records') + data_case_today.to_dict('records'),
     columns=[{'id': c, 'name': c} for c in data_case.columns],
 
     style_as_list_view=True,
