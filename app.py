@@ -67,8 +67,8 @@ else:
     death =  str(0-df_case_today.death.sum())
     death= '(' + '+' + death + ')'
 
-data_case={'ACTIVE': df_case.active.sum(),'RECOVERED': df_case.recovered.sum(),'CONFIRMED': df_case.confirmed.sum(), 'DEATH': df_case.death.sum()}
-data_case_today={'ACTIVE': active,'RECOVERED': recovered,'CONFIRMED': confirmed, 'DEATH': death}
+data_case={'CONFIRMED': df_case.confirmed.sum(),'ACTIVE': df_case.active.sum(),'RECOVERED': df_case.recovered.sum(), 'DEATH': df_case.death.sum()}
+data_case_today={'CONFIRMED': confirmed, 'ACTIVE': active,'RECOVERED': recovered,'DEATH': death}
 data_case=pd.DataFrame(data_case,index=[0])
 data_case_today=pd.DataFrame(data_case_today,index=[0])
 def split_uppercase(value):
