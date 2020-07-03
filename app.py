@@ -158,7 +158,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
     		   'textAlign': 'center',
         	   'color': 'white',
     		   'font-family':'Times New Roman',
-            	   'fontSize':20
+            	   'fontSize':28
             	   
     },
     
@@ -168,7 +168,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'color': 'white',
         'fontWeight': 'bold',
         'font-family':'Times New Roman',
-        'fontSize':20, 
+        'fontSize':28, 
         
     },
     ),
