@@ -36,9 +36,40 @@ case_read = requests.get(case_url)
 case_x = case_read.json()
 df_case=pd.DataFrame(case_x['summary'])
 df_case=df_case.transpose()
-df_case['death']=df_case['confirmed']-df_case['active']-df_case['recovered']
+df_case_today=pd.DataFrame(case_x['delta'])
+
+df_case_today=df_case_today.transpose()
+df_case_today['death']=df_case_today['confirmed']-df_case_today['active']-df_case_today['recovered']
+active= str(df_case_today.active.sum())
+recovered= str(df_case_today.recovered.sum())
+confirmed= str(df_case_today.confirmed.sum())
+death= str(df_case_today.death.sum())
+if df_case_today.active.sum()>=0:
+    active= '(' + '+' + active + ')'
+else:
+    active = str(0-df_case_today.active.sum())
+    active = '(' + '-' + active + ')'
+if df_case_today.recovered.sum()>=0:
+    recovered= '('  + '+' + recovered + ')'
+else:
+    recovered = str(0-df_case_today.recovered.sum())
+    recovered= '('  + '+' + recovered + ')'
+
+if df_case_today.confirmed.sum()>=0:
+    confirmed= '(' + '+' + confirmed + ')'
+else:
+    confirmed = str(0-df_case_today.confirmed.sum())
+    confirmed= '(' + '+' + confirmed + ')'
+if df_case_today.death.sum()>=0:
+    death= '(' + '+' + death + ')'
+else:
+    death =  str(0-df_case_today.death.sum())
+    death= '(' + '+' + death + ')'
+
 data_case={'ACTIVE': df_case.active.sum(),'RECOVERED': df_case.recovered.sum(),'CONFIRMED': df_case.confirmed.sum(), 'DEATH': df_case.death.sum()}
+data_case_today={'ACTIVE': active,'RECOVERED': recovered,'CONFIRMED': confirmed, 'DEATH': death}
 data_case=pd.DataFrame(data_case,index=[0])
+data_case_today=pd.DataFrame(data_case_today,index=[0])
 def split_uppercase(value):
     return re.sub(r'([A-Z])', r' \1', value)
 for i in range (0,len(df)):
