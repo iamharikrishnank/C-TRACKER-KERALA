@@ -136,6 +136,40 @@ colors = {
     'background': '#111111',
     'text': '#7FDBFF'
 }
+fig = go.Figure(data=[go.Bar(
+    x=sorted_df_case.index,
+    y=sorted_df_case.total_obs,
+    marker=dict(
+        color=sorted_df_case.total_obs,
+
+        showscale=True,
+
+
+    ),
+
+
+
+    width=[.70,.65,.60,.55,.50,.45,.40,.35,.30,.25,.20,.15,.10,.05],
+
+
+
+
+)])
+fig.update_layout(
+    width=600,
+    height=600,
+    title="Quarantine Summary",
+    xaxis_title="Districts",
+    yaxis_title="Number of Peoples",
+    plot_bgcolor= colors['background'],
+    paper_bgcolor= colors['background'],
+    font=dict(
+        family="Courier New, monospace",
+        size=18,
+        color=colors['text']
+    )
+)
+    
 app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
     html.H1(
         children='C-TRACKER KERALA DASH BOARD',
@@ -172,7 +206,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         
     },
     ),
-    
+    dcc.Graph(figure=fig),
     html.H2(children='LATEST COVID-19 HOTSPOTS IN KERALA[UPDATED]', style={
         'textAlign': 'center',
         'color': colors['text']
@@ -186,7 +220,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         id='Graph1',
         figure={
             'data': [
-                {'x': date, 'y': postivecase, 'type': 'line', 'name': 'Postive Cases'},
+                {'x': date, 'y': postivecase, 'type': 'line', 'name': 'Postive Cases',},
                 
               
                 
