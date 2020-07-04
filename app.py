@@ -122,6 +122,7 @@ for i in range (0,len(df)):
     res = re.sub(r"(\w)([A-Z])", r"\1 \2", value).split(sep, 1)[0] + '  ' +jilla + '  ' + 'district'
     new_value=  res.split(sep, 1)[0] +  ','+jilla.split(sep, 1)[0]  + '   ' + 'wards:' + wards
     print(res)
+    
     list.append(res)
     list_popup.append(new_value)
 list_location=[]
@@ -140,8 +141,8 @@ for a in list:
     latitude = data['items'][0]['position']['lat']
     longitude = data['items'][0]['position']['lng']
     print(latitude,longitude)
-    if (latitude>14.8856 and longitude>79.29639):
-       location=re.sub(r"(\w)([A-Z])", r"\1 \2", value) + '  ' +'Kerala'
+    if (latitude>14.8856 and longitude>76.29639):
+       location=re.sub(r"(\w)([A-Z])", r"\1 \2", value) + ',Kerala'
        r = requests.get(url = URL, params = PARAMS) 
        data = r.json()
        latitude = data['items'][0]['position']['lat']
