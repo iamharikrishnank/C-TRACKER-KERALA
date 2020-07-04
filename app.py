@@ -99,7 +99,8 @@ data_case_today={'ACTIVE': active,'RECOVERED': recovered,'CONFIRMED': confirmed,
 test_case={'TOTAL': df_case.total_obs.sum(),'HOSPITAL': df_case.hospital_obs.sum(),'HOME': df_case.home_obs.sum(), 'HOSPITALISED':df_case.hospital_today.sum()
 }
 test_case_today={'TOTAL': total,'HOSPITAL': hospital,'HOME': home, 'HOSPITALISED': recover}
-test_report={'TOTAL': df1.total.tail(1),'TODAY': df1.today.tail(1),'POSITIVE': df1.positive.tail(1), 'POSTIVE TODAY': df1.today_positive.tail(1)}
+test_report={'TOTAL': df1.total.iloc[-1],'TODAY': df1.today.iloc[-1],'POSITIVE': df1.positive.iloc[-1], 'POSTIVE TODAY': df1.today_positive.iloc[-1]
+}
 data_case=pd.DataFrame(data_case,index=[0])
 data_case_today=pd.DataFrame(data_case_today,index=[0])
 test_case=pd.DataFrame(test_case,index=[0])
