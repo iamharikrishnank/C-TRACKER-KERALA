@@ -271,6 +271,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             'layout': {
                 'plot_bgcolor': colors['background'],
                 'paper_bgcolor': colors['background'],
+                'title':"Cumulative Summary of Kerala",
                 'font': {
                     'color': colors['text']
                 }
