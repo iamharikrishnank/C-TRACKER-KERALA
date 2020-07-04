@@ -73,6 +73,7 @@ data_case={'CONFIRMED': df_case.confirmed.sum(),'ACTIVE': df_case.active.sum(),'
 data_case_today={'CONFIRMED': confirmed, 'ACTIVE': active,'RECOVERED': recovered,'DEATH': death}
 data_case=pd.DataFrame(data_case,index=[0])
 data_case_today=pd.DataFrame(data_case_today,index=[0])
+
 def split_uppercase(value):
     return re.sub(r'([A-Z])', r' \1', value)
 for i in range (0,len(df)):
@@ -132,6 +133,31 @@ for point in range(1,len(list_location)) :
       map_osm.add_child(hotspot)
 
 map_osm.save('map.html')
+history_url = 'https://keralastats.coronasafe.live/histories.json'
+history_read = requests.get(history_url)
+history_x = history_read.json()
+histories=history_x['histories']
+date_history=pd.DataFrame(histories)
+df_date=pd.DataFrame(date_history.date)
+list_active=[]
+list_confirmed=[]
+list_recovered=[]
+list_death=[]
+for i in date_history.index:
+    df_history=pd.DataFrame.from_dict(date_history.summary.iloc[i])
+    df_history=df_history.transpose()
+    active=df_history.active.sum()
+    confirmed=df_history.confirmed.sum()
+    recovered=df_history.recovered.sum()
+    death=df_history.confirmed.sum()-df_history.active.sum()-df_history.recovered.sum()
+    list_active.append(active)
+    list_confirmed.append(confirmed)
+    list_recovered.append(recovered)
+    list_death.append(death)
+df_date['active']=pd.DataFrame(list_active)
+df_date['recovered']=pd.DataFrame(list_recovered)
+df_date['confirmed']=pd.DataFrame(list_confirmed)
+df_date['death']=pd.DataFrame(list_death)
 app = dash.Dash(__name__)
 server = app.server
 colors = {
@@ -231,6 +257,25 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'fontSize':28, 
         
     },
+    ),
+    dcc.Graph(
+        id='covid history',
+        figure={
+            'data': [
+                {'x': df_date.date, 'y': df_date.active, 'type': 'line', 'name': 'Active'},
+                {'x': df_date.date, 'y': df_date.confirmed, 'type': 'line', 'name': 'Confirmed'},
+                {'x': df_date.date, 'y': df_date.recovered, 'type': 'line', 'name': 'Recovered'},
+                {'x': df_date.date, 'y': df_date.death, 'type': 'line', 'name': 'Death'},
+
+            ],
+            'layout': {
+                'plot_bgcolor': colors['background'],
+                'paper_bgcolor': colors['background'],
+                'font': {
+                    'color': colors['text']
+                }
+            }
+        }
     ),
     dcc.Graph(figure=fig),
     dcc.Graph(figure=fig_stack),
