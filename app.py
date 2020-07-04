@@ -140,11 +140,11 @@ for a in list:
     latitude = data['items'][0]['position']['lat']
     longitude = data['items'][0]['position']['lng']
     print(latitude,longitude)
-    if (latitude==14.8856 and longitude==79.29639):
-       
+    if (latitude>14.8856 and longitude>79.29639):
+       location=re.sub(r"(\w)([A-Z])", r"\1 \2", value) + '  ' +'Kerala'
 
-    	latitude = 11.87411
-    	longitude = 75.37147
+    	latitude = data['items'][0]['position']['lat']
+    	longitude = data['items'][0]['position']['lng']
    
     list_location.append([latitude,longitude])
 
