@@ -142,9 +142,10 @@ for a in list:
     print(latitude,longitude)
     if (latitude>14.8856 and longitude>79.29639):
        location=re.sub(r"(\w)([A-Z])", r"\1 \2", value) + '  ' +'Kerala'
-
-    	latitude = data['items'][0]['position']['lat']
-    	longitude = data['items'][0]['position']['lng']
+       r = requests.get(url = URL, params = PARAMS) 
+       data = r.json()
+       latitude = data['items'][0]['position']['lat']
+       longitude = data['items'][0]['position']['lng']
    
     list_location.append([latitude,longitude])
 
