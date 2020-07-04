@@ -119,7 +119,7 @@ for i in range (0,len(df)):
     
     sep = ' '
     
-    res = re.sub(r"(\w)([A-Z])", r"\1 \2", value) + '  ' +jilla + 'Kerala'
+    res = re.sub(r"(\w)([A-Z])", r"\1 \2", value) + '  ' +jilla + ',' + 'Kerala'
     new_value=  res.split(sep, 1)[0] +  ','+jilla.split(sep, 1)[0]  + '   ' + 'wards:' + wards
     print(res)
     list.append(res)
@@ -440,46 +440,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'textAlign': 'center',
         'color': colors['text']
     }),
-    dcc.Graph(
-        id='Graph2',
-        figure={
-            'data': [
-                {'x': date, 'y': testcase, 'type': 'line', 'name': 'Test Cases'},
-                
-              
-                
-            ],
-            'layout': {
-                'plot_bgcolor': colors['background'],
-                'paper_bgcolor': colors['background'],
-                'font': {
-                    'color': colors['text']
-                }
-            }
-        }
-    ),
-    html.H2(children='COVID-19 DAILY POSITIVE CASES IN KERALA[UPDATED]', style={
-        'textAlign': 'center',
-        'color': colors['text']
-    }),
-    dcc.Graph(
-        id='Graph3',
-        figure={
-            'data': [
-                {'x': date, 'y': today_positive, 'type': 'line', 'name': 'Daily Postive Cases'},
-                
-              
-                
-            ],
-            'layout': {
-                'plot_bgcolor': colors['background'],
-                'paper_bgcolor': colors['background'],
-                'font': {
-                    'color': colors['text']
-                }
-            }
-        }
-    ),
+    
 ])
 
 if __name__ == '__main__':
