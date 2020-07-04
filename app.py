@@ -273,7 +273,9 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                 'paper_bgcolor': colors['background'],
                 'title':"Cumulative Summary of Kerala",
                 'font': {
-                    'color': colors['text']
+                    'color': colors['text'],
+                    'family':"Courier New, monospace",
+                    'size':18
                 }
             }
         }
