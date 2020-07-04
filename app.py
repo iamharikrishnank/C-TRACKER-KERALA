@@ -69,10 +69,14 @@ else:
     death =  str(0-df_case_today.death.sum())
     death= '(' + '+' + death + ')'
 
-data_case={'CONFIRMED': df_case.confirmed.sum(),'ACTIVE': df_case.active.sum(),'RECOVERED': df_case.recovered.sum(), 'DEATH': df_case.death.sum()}
-data_case_today={'CONFIRMED': confirmed, 'ACTIVE': active,'RECOVERED': recovered,'DEATH': death}
+data_case={'ACTIVE': df_case.active.sum(),'RECOVERED': df_case.recovered.sum(),'CONFIRMED': df_case.confirmed.sum(), 'DEATH': df_case.death.sum()}
+data_case_today={'ACTIVE': active,'RECOVERED': recovered,'CONFIRMED': confirmed, 'DEATH': death}
+test_case={'TOTAL': df_case.total_obs.sum(),'HOSPITAL': df_case.hospital_obs.sum(),'HOME': df_case.home_obs.sum(), 'RECOVERED': df_case.hospital_today.sum()}
+test_case_today={'TOTAL': df_case_today.total_obs.sum(),'HOSPITAL': df_case_today.hospital_obs.sum(),'HOME': df_case_today.home_obs.sum(), 'RECOVERED': df_case_today.hospital_today.sum()}
 data_case=pd.DataFrame(data_case,index=[0])
 data_case_today=pd.DataFrame(data_case_today,index=[0])
+test_case=pd.DataFrame(test_case,index=[0])
+test_case_today=pd.DataFrame(test_case_today,index=[0])
 
 def split_uppercase(value):
     return re.sub(r'([A-Z])', r' \1', value)
@@ -325,6 +329,31 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
 
             }
         }
+    ),
+    dash_table.DataTable(
+        data=test_case.to_dict('records') + test_case_today.to_dict('records'),
+        columns=[{'id': c, 'name': c} for c in test_case.columns],
+
+        style_as_list_view=True,
+        style_header={'backgroundColor': 'rgb(30, 30, 30)',
+                      'fontWeight': 'bold',
+                      'textAlign': 'center',
+                      'color': 'white',
+                      'font-family': 'Times New Roman',
+                      'fontSize': 20
+
+                      },
+
+        style_cell={
+            'backgroundColor': 'rgb(50, 50, 50)',
+            'textAlign': 'center',
+            'color': 'white',
+            'fontWeight': 'bold',
+            'font-family': 'Times New Roman',
+            'fontSize': 20,
+            'marginBottom': '10px'
+
+        },
     ),
     dcc.Graph(figure=fig),
     dcc.Graph(figure=fig_stack),
