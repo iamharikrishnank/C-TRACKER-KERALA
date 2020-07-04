@@ -361,6 +361,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             }
         }
     ),
+    html.H2(children='LATEST COVID-19 TEST REPORTS IN KERALA[UPDATED]', style={
+        'textAlign': 'center',
+        'color': colors['text']
+    }),
     dash_table.DataTable(
         data=test_case.to_dict('records') + test_case_today.to_dict('records'),
         columns=[{'id': c, 'name': c} for c in test_case.columns],
