@@ -398,23 +398,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
     }),
     html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600'),
    
-    dcc.Graph(
-        id='Graph1',
-        figure={
-            'data': [
-                {'x': date, 'y': postivecase, 'type': 'line', 'name': 'Postive Cases',},
-                
-              
-                
-            ],
-            'layout': {
-                'plot_bgcolor': colors['background'],
-                'paper_bgcolor': colors['background'],
-                'font': {
-                    'color': colors['text']
-                }
-            }
-        }
+    html.H2(children='COVID-19 DAILY TESTS  IN KERALA[UPDATED]', style={
+        'textAlign': 'center',
+        'color': colors['text']
+    }
     ),
     dash_table.DataTable(
         data=test_report.to_dict('records'),
@@ -441,10 +428,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
 
         },
     ),
-    html.H2(children='COVID-19 DAILY TESTS  IN KERALA[UPDATED]', style={
-        'textAlign': 'center',
-        'color': colors['text']
-    }),
+    
     
 ])
 
