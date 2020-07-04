@@ -96,9 +96,9 @@ else:
 
 data_case={'ACTIVE': df_case.active.sum(),'RECOVERED': df_case.recovered.sum(),'CONFIRMED': df_case.confirmed.sum(), 'DEATH': df_case.death.sum()}
 data_case_today={'ACTIVE': active,'RECOVERED': recovered,'CONFIRMED': confirmed, 'DEATH': death}
-test_case={'TOTAL': df_case.total_obs.sum(),'HOSPITAL': df_case.hospital_obs.sum(),'HOME': df_case.home_obs.sum(), 'RECOVERED':df_case.hospital_today.sum()
+test_case={'TOTAL': df_case.total_obs.sum(),'HOSPITAL': df_case.hospital_obs.sum(),'HOME': df_case.home_obs.sum(), 'HOSPITALISED':df_case.hospital_today.sum()
 }
-test_case_today={'TOTAL': total,'HOSPITAL': hospital,'HOME': home, 'RECOVERED': recover}
+test_case_today={'TOTAL': total,'HOSPITAL': hospital,'HOME': home, 'HOSPITALISED': recover}
 data_case=pd.DataFrame(data_case,index=[0])
 data_case_today=pd.DataFrame(data_case_today,index=[0])
 test_case=pd.DataFrame(test_case,index=[0])
