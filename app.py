@@ -139,6 +139,7 @@ history_x = history_read.json()
 histories=history_x['histories']
 date_history=pd.DataFrame(histories)
 df_date=pd.DataFrame(date_history.date)
+df_daily=pd.DataFrame(date_history.date)
 list_active=[]
 list_confirmed=[]
 list_recovered=[]
@@ -158,6 +159,25 @@ df_date['active']=pd.DataFrame(list_active)
 df_date['recovered']=pd.DataFrame(list_recovered)
 df_date['confirmed']=pd.DataFrame(list_confirmed)
 df_date['death']=pd.DataFrame(list_death)
+list_active_daily=[]
+list_confirmed_daily=[]
+list_recovered_daily=[]
+list_death_daily=[]
+for i in date_history.index:
+    df_history=pd.DataFrame.from_dict(date_history.delta.iloc[i])
+    df_history=df_history.transpose()
+    active=df_history.active.sum()
+    confirmed=df_history.confirmed.sum()
+    recovered=df_history.recovered.sum()
+    death=df_history.confirmed.sum()-df_history.active.sum()-df_history.recovered.sum()
+    list_active_daily.append(active)
+    list_confirmed_daily.append(confirmed)
+    list_recovered_daily.append(recovered)
+    list_death_daily.append(death)
+df_daily['active']=pd.DataFrame(list_active_daily)
+df_daily['recovered']=pd.DataFrame(list_recovered_daily)
+df_daily['confirmed']=pd.DataFrame(list_confirmed_daily)
+df_daily['death']=pd.DataFrame(list_death_daily)
 app = dash.Dash(__name__)
 server = app.server
 colors = {
@@ -277,6 +297,32 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                     'family':"Courier New, monospace",
                     'size':18
                 }
+            }
+        }
+    ),
+    dcc.Graph(
+        id='covid daily',
+        figure={
+            'data': [
+                {'x': df_daily.date, 'y': df_daily.active, 'type': 'scatter', 'name': 'Active','mode':'lines+markers'},
+                {'x': df_daily.date, 'y': df_daily.confirmed, 'type': 'scatter', 'name': 'Confirmed','mode':'lines+markers',},
+                {'x': df_daily.date, 'y': df_daily.recovered, 'type': 'scatter', 'name': 'Recovered','mode':'lines+markers',},
+                {'x': df_daily.date, 'y': df_daily.death, 'type': 'scatter', 'name': 'Death','mode':'lines+markers'},
+
+            ],
+            'layout': {
+                'plot_bgcolor': colors['background'],
+                'paper_bgcolor': colors['background'],
+                'title':"Datewise Reporting",
+
+                'font': {
+                    'color': colors['text'],
+                    'family':"Courier New, monospace",
+                    'size':18,
+                    'textAlign': 'left',
+                }
+
+
             }
         }
     ),
