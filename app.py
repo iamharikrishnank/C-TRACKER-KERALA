@@ -141,7 +141,7 @@ for a in list:
     latitude = data['items'][0]['position']['lat']
     longitude = data['items'][0]['position']['lng']
     print(latitude,longitude)
-    if (latitude>14.8856 and longitude>76.29639):
+    if (latitude>10.8856 and longitude>76.29639):
        location=re.sub(r"(\w)([A-Z])", r"\1 \2", value) + ',Kerala'
        r = requests.get(url = URL, params = PARAMS) 
        data = r.json()
