@@ -99,10 +99,12 @@ data_case_today={'ACTIVE': active,'RECOVERED': recovered,'CONFIRMED': confirmed,
 test_case={'TOTAL': df_case.total_obs.sum(),'HOSPITAL': df_case.hospital_obs.sum(),'HOME': df_case.home_obs.sum(), 'HOSPITALISED':df_case.hospital_today.sum()
 }
 test_case_today={'TOTAL': total,'HOSPITAL': hospital,'HOME': home, 'HOSPITALISED': recover}
+test_report={'TOTAL': df1.total.sum(),'TODAY': df1.today.sum(),'POSITIVE': df1.positive.sum(), 'POSTIVE TODAY': df1.today_positive.sum()}
 data_case=pd.DataFrame(data_case,index=[0])
 data_case_today=pd.DataFrame(data_case_today,index=[0])
 test_case=pd.DataFrame(test_case,index=[0])
 test_case_today=pd.DataFrame(test_case_today,index=[0])
+test_report=pd.DataFrame(test_report,index=[0])
 
 def split_uppercase(value):
     return re.sub(r'([A-Z])', r' \1', value)
@@ -406,6 +408,31 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                 }
             }
         }
+    ),
+    dash_table.DataTable(
+        data=test_report.to_dict('records'),
+        columns=[{'id': c, 'name': c} for c in test_report.columns],
+
+        style_as_list_view=True,
+        style_header={'backgroundColor': 'rgb(30, 30, 30)',
+                      'fontWeight': 'bold',
+                      'textAlign': 'center',
+                      'color': 'white',
+                      'font-family': 'Times New Roman',
+                      'fontSize': 20
+
+                      },
+
+        style_cell={
+            'backgroundColor': 'rgb(50, 50, 50)',
+            'textAlign': 'center',
+            'color': 'white',
+            'fontWeight': 'bold',
+            'font-family': 'Times New Roman',
+            'fontSize': 20,
+            'marginBottom': '10px'
+
+        },
     ),
     html.H2(children='COVID-19 DAILY TESTS  IN KERALA[UPDATED]', style={
         'textAlign': 'center',
