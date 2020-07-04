@@ -169,7 +169,7 @@ for i in date_history.index:
     active=df_history_daily.active.sum()
     confirmed=df_history_daily.confirmed.sum()
     recovered=df_history_daily.recovered.sum()
-    death=df_history_daily.confirmed.sum()-df_history_daily.active.sum()-df_history_daily.recovered.sum()
+    death=df_history_daily.decreased.sum()
     list_active_daily.append(active)
     list_confirmed_daily.append(confirmed)
     list_recovered_daily.append(recovered)
