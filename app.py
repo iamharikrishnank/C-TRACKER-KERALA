@@ -400,7 +400,13 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
    
     html.H2(children='COVID-19 DAILY TESTS  IN KERALA[UPDATED]', style={
         'textAlign': 'center',
-        'color': colors['text']
+        'color': colors['text'],
+        'font': {
+                    'color': colors['text'],
+                    'family':"Courier New, monospace",
+                    'size':18,
+                    'textAlign': 'left',
+                }
     }
     ),
     dash_table.DataTable(
