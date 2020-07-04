@@ -36,13 +36,13 @@ case_read = requests.get(case_url)
 case_x = case_read.json()
 df_case=pd.DataFrame(case_x['summary'])
 df_case=df_case.transpose()
-df_case['death']=df_case['confirmed']-df_case['active']-df_case['recovered']
+df_case['death']=df_case['deceased']
 sorted_df_case=df_case.sort_values(by=['total_obs'], ascending=False)
 sorted_active_case=df_case.sort_values(by=['active'], ascending=False)
 df_case_today=pd.DataFrame(case_x['delta'])
 
 df_case_today=df_case_today.transpose()
-df_case_today['death']=df_case_today['confirmed']-df_case_today['active']-df_case_today['recovered']
+df_case_today['death']=df_case_today['deceased']
 active= str(df_case_today.active.sum())
 recovered= str(df_case_today.recovered.sum())
 confirmed= str(df_case_today.confirmed.sum())
@@ -150,7 +150,7 @@ for i in date_history.index:
     active=df_history.active.sum()
     confirmed=df_history.confirmed.sum()
     recovered=df_history.recovered.sum()
-    death=df_history.confirmed.sum()-df_history.active.sum()-df_history.recovered.sum()
+    death=df_history.deceased.sum()
     list_active.append(active)
     list_confirmed.append(confirmed)
     list_recovered.append(recovered)
@@ -169,7 +169,7 @@ for i in date_history.index:
     active=df_history_daily.active.sum()
     confirmed=df_history_daily.confirmed.sum()
     recovered=df_history_daily.recovered.sum()
-    death=df_history_daily.decreased.sum()
+    death=df_history_daily.deceased.sum()
     list_active_daily.append(active)
     list_confirmed_daily.append(confirmed)
     list_recovered_daily.append(recovered)
