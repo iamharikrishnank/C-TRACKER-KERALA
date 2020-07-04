@@ -241,7 +241,7 @@ fig = go.Figure(data=[go.Bar(
 fig.update_layout(
     
     height=600,
-    title="Quarantine Summary",
+    title="Districtwise Quarantine Summary",
     xaxis_title="Districts",
     yaxis_title="Number of Cases",
     plot_bgcolor= colors['background'],
@@ -361,7 +361,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             }
         }
     ),
-    html.H2(children='LATEST COVID-19 TEST REPORTS IN KERALA[UPDATED]', style={
+    html.H2(children='QUARANTINE SUMMARY', style={
         'textAlign': 'center',
         'color': colors['text']
     }),
