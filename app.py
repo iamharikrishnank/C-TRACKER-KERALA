@@ -119,7 +119,7 @@ for i in range (0,len(df)):
     
     sep = ' '
     
-    res = re.sub(r"(\w)([A-Z])", r"\1 \2", value).split(sep, 1)[0] + '  ' +jilla + '  ' + 'district'
+    res = re.sub(r"(\w)([A-Z])", r"\1 \2", value).split(sep, 1)[0] + '  ' +jilla + '  ' + 'district'  +  '  '  +  'Kerala'
     new_value=  res.split(sep, 1)[0] +  ','+jilla.split(sep, 1)[0]  + '   ' + 'wards:' + wards
     print(res)
     
