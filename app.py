@@ -200,7 +200,8 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         children='C-TRACKER KERALA DASH BOARD',
         style={
             'textAlign': 'center',
-            'color': colors['text']
+            'color': colors['text'],
+            'width : '1280',
         }
     ),
     html.Div(children='C-TRACKER KERALA: A web application  for tracking COVID-19 spread all over Kerala.', style={
