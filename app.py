@@ -38,6 +38,7 @@ df_case=pd.DataFrame(case_x['summary'])
 df_case=df_case.transpose()
 df_case['death']=df_case['confirmed']-df_case['active']-df_case['recovered']
 sorted_df_case=df_case.sort_values(by=['total_obs'], ascending=False)
+sorted_active_case=df_case.sort_values(by=['active'], ascending=False)
 df_case_today=pd.DataFrame(case_x['delta'])
 
 df_case_today=df_case_today.transpose()
@@ -161,14 +162,37 @@ fig.update_layout(
     height=600,
     title="Quarantine Summary",
     xaxis_title="Districts",
-    yaxis_title="Number of Peoples",
+    yaxis_title="Number of Cases",
     plot_bgcolor= colors['background'],
     paper_bgcolor= colors['background'],
     font=dict(
         family="Courier New, monospace",
         size=18,
         color=colors['text']
-    )
+    ),
+    yaxis_showgrid=False,
+)
+fig_stack = go.Figure(data=[
+    go.Bar(name='Active', x=sorted_active_case.index, y=sorted_active_case.active),
+    go.Bar(name='Death', x=sorted_active_case.index, y=sorted_active_case.death)
+])
+# Change the bar mode
+fig_stack.update_layout(barmode='stack',
+        width=1280,
+        height=600,
+        title="Districtwise Active-Death Summary",
+        xaxis_title="Districts",
+        yaxis_title="Number of Cases",
+        plot_bgcolor = colors['background'],
+        paper_bgcolor = colors['background'],
+        font=dict(
+        family="Courier New, monospace",
+        size=18,
+        color=colors['text']
+        ),
+        yaxis_showgrid=False,
+
+
 )
     
 app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
@@ -208,6 +232,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
     },
     ),
     dcc.Graph(figure=fig),
+    dcc.Graph(figure=fig_stack),
     html.H2(children='LATEST COVID-19 HOTSPOTS IN KERALA[UPDATED]', style={
         'textAlign': 'center',
         'color': colors['text']
