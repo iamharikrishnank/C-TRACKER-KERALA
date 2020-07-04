@@ -47,6 +47,10 @@ active= str(df_case_today.active.sum())
 recovered= str(df_case_today.recovered.sum())
 confirmed= str(df_case_today.confirmed.sum())
 death= str(df_case_today.death.sum())
+total= str(df_case_today.total_obs.sum())
+hospital= str(df_case_today.hospital_obs.sum())
+home= str(df_case_today.home_obs.sum())
+recover= str(df_case_today.hospital_today.sum())
 if df_case_today.active.sum()>=0:
     active= '(' + '+' + active + ')'
 else:
@@ -68,11 +72,32 @@ if df_case_today.death.sum()>=0:
 else:
     death =  str(0-df_case_today.death.sum())
     death= '(' + '+' + death + ')'
+if df_case_today.total_obs.sum()>=0:
+    total= '(' + '+' + total + ')'
+else:
+
+    total = '('  + total + ')'
+if df_case_today.home_obs.sum() >= 0:
+    home = '(' + '+' + home + ')'
+else:
+
+    home = '(' + home + ')'
+
+if df_case_today.hospital_obs.sum() >= 0:
+    hospital = '(' + '+' + hospital + ')'
+else:
+
+    hospital = '(' + hospital + ')'
+if df_case_today.hospital_today.sum() >= 0:
+    recover = '(' + '+' + recover + ')'
+else:
+
+    recover = '(' + recover + ')'
 
 data_case={'ACTIVE': df_case.active.sum(),'RECOVERED': df_case.recovered.sum(),'CONFIRMED': df_case.confirmed.sum(), 'DEATH': df_case.death.sum()}
 data_case_today={'ACTIVE': active,'RECOVERED': recovered,'CONFIRMED': confirmed, 'DEATH': death}
 test_case={'TOTAL': df_case.total_obs.sum(),'HOSPITAL': df_case.hospital_obs.sum(),'HOME': df_case.home_obs.sum(), 'RECOVERED': df_case.hospital_today.sum()}
-test_case_today={'TOTAL': df_case_today.total_obs.sum(),'HOSPITAL': df_case_today.hospital_obs.sum(),'HOME': df_case_today.home_obs.sum(), 'RECOVERED': df_case_today.hospital_today.sum()}
+test_case_today={'TOTAL': total,'HOSPITAL': hospital,'HOME': home, 'RECOVERED': recover}
 data_case=pd.DataFrame(data_case,index=[0])
 data_case_today=pd.DataFrame(data_case_today,index=[0])
 test_case=pd.DataFrame(test_case,index=[0])
