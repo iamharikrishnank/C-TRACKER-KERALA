@@ -304,7 +304,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         id='covid daily',
         figure={
             'data': [
-                {'x': df_daily.date, 'y': df_daily.active, 'type': 'scatter', 'name': 'Active','mode':'lines+markers'},
+                
                 {'x': df_daily.date, 'y': df_daily.confirmed, 'type': 'scatter', 'name': 'Confirmed','mode':'lines+markers',},
                 {'x': df_daily.date, 'y': df_daily.recovered, 'type': 'scatter', 'name': 'Recovered','mode':'lines+markers',},
                 {'x': df_daily.date, 'y': df_daily.death, 'type': 'scatter', 'name': 'Death','mode':'lines+markers'},
