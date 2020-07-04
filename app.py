@@ -239,10 +239,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'color': colors['text']
     }),
     html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600'),
-    html.H2(children='COVID-19 POSITIVE CASES IN KERALA[UPDATED]', style={
-        'textAlign': 'center',
-        'color': colors['text']
-    }),
+   
     dcc.Graph(
         id='Graph1',
         figure={
