@@ -158,7 +158,7 @@ fig = go.Figure(data=[go.Bar(
 
 )])
 fig.update_layout(
-    width=1280,
+    width='100%',
     height=600,
     title="Quarantine Summary",
     xaxis_title="Districts",
@@ -178,7 +178,7 @@ fig_stack = go.Figure(data=[
 ])
 # Change the bar mode
 fig_stack.update_layout(barmode='stack',
-        width=1280,
+        width='100%',
         height=600,
         title="Districtwise Active-Death Summary",
         xaxis_title="Districts",
@@ -238,7 +238,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'textAlign': 'center',
         'color': colors['text']
     }),
-    html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='1280',height='600'),
+    html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600'),
    
     dcc.Graph(
         id='Graph1',
