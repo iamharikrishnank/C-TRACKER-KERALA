@@ -238,7 +238,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'textAlign': 'center',
         'color': colors['text']
     }),
-    html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600'),
+    html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='1280',height='600'),
    
     dcc.Graph(
         id='Graph1',
