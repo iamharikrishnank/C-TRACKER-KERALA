@@ -158,7 +158,7 @@ fig = go.Figure(data=[go.Bar(
 
 )])
 fig.update_layout(
-    width='100%',
+    
     height=600,
     title="Quarantine Summary",
     xaxis_title="Districts",
@@ -178,7 +178,7 @@ fig_stack = go.Figure(data=[
 ])
 # Change the bar mode
 fig_stack.update_layout(barmode='stack',
-        width='100%',
+        
         height=600,
         title="Districtwise Active-Death Summary",
         xaxis_title="Districts",
