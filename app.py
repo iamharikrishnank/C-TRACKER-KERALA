@@ -164,12 +164,12 @@ list_confirmed_daily=[]
 list_recovered_daily=[]
 list_death_daily=[]
 for i in date_history.index:
-    df_history=pd.DataFrame.from_dict(date_history.delta.iloc[i])
-    df_history=df_history.transpose()
-    active=df_history.active.sum()
-    confirmed=df_history.confirmed.sum()
-    recovered=df_history.recovered.sum()
-    death=df_history.confirmed.sum()-df_history.active.sum()-df_history.recovered.sum()
+    df_history_daily=pd.DataFrame.from_dict(date_history.delta.iloc[i])
+    df_history_daily=df_history_daily.transpose()
+    active=df_history_daily.active.sum()
+    confirmed=df_history_daily.confirmed.sum()
+    recovered=df_history_daily.recovered.sum()
+    death=df_history_daily.confirmed.sum()-df_history_daily.active.sum()-df_history_daily.recovered.sum()
     list_active_daily.append(active)
     list_confirmed_daily.append(confirmed)
     list_recovered_daily.append(recovered)
