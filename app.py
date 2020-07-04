@@ -157,8 +157,8 @@ fig = go.Figure(data=[go.Bar(
 
 )])
 fig.update_layout(
-    width=600,
-    height=600,
+    width=800,
+    height=800,
     title="Quarantine Summary",
     xaxis_title="Districts",
     yaxis_title="Number of Peoples",
