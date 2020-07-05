@@ -246,10 +246,12 @@ fig.update_layout(
     yaxis_title="Number of Cases",
     plot_bgcolor= colors['background'],
     paper_bgcolor= colors['background'],
+    title_x=0.5,
     font=dict(
         family="Courier New, monospace",
         size=18,
-        color=colors['text']
+        color=colors['text'],
+
     ),
     yaxis_showgrid=False,
 )
@@ -262,6 +264,7 @@ fig_stack.update_layout(barmode='stack',
         
         height=600,
         title="Districtwise Active-Death Summary",
+        title_x=0.5,
         xaxis_title="Districts",
         yaxis_title="Number of Cases",
         plot_bgcolor = colors['background'],
@@ -285,7 +288,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             
         }
     ),
-    html.Div(children='C-TRACKER KERALA: A web application  for tracking COVID-19 spread all over Kerala.', style={
+    html.Div(children='C-TRACKER KERALA: A web application  for tracking COVID-19 spread all over Kerala.developed By Harikrishnan K', style={
         'textAlign': 'center',
         'color': colors['text']
     }),
@@ -349,21 +352,26 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                 'plot_bgcolor': colors['background'],
                 'paper_bgcolor': colors['background'],
                 'title':"Datewise Reporting",
+                'marginBottom': '10px',
+                'marginTop': '10px',
 
                 'font': {
                     'color': colors['text'],
                     'family':"Courier New, monospace",
                     'size':18,
-                    'textAlign': 'left',
+
                 }
 
 
             }
         }
     ),
-    html.H2(children='QUARANTINE SUMMARY', style={
+    html.P(children='Quarantine Summary', style={
         'textAlign': 'center',
-        'color': colors['text']
+        'color': colors['text'],
+        'font-family':'Courier New, monospace',
+        'fontSize':24,
+        'marginTop': '10px'
     }),
     dash_table.DataTable(
         data=test_case.to_dict('records') + test_case_today.to_dict('records'),
@@ -375,7 +383,8 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                       'textAlign': 'center',
                       'color': 'white',
                       'font-family': 'Times New Roman',
-                      'fontSize': 20
+                      'fontSize': 28,
+
 
                       },
 
@@ -386,29 +395,30 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             'fontWeight': 'bold',
             'font-family': 'Times New Roman',
             'fontSize': 20,
-            'marginBottom': '10px'
+            'marginBottom': '10px',
+            'marginTop': '10px',
+
 
         },
     ),
-    dcc.Graph(figure=fig),
+    dcc.Graph(figure=fig,style={'textAlign': 'center',}),
     dcc.Graph(figure=fig_stack),
-    html.H2(children='LATEST COVID-19 HOTSPOTS IN KERALA[UPDATED]', style={
-        'textAlign': 'center',
-        'color': colors['text']
-    }),
-    html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600'),
-   
-    html.H2(children='COVID-19 DAILY TESTS  IN KERALA[UPDATED]', style={
+    html.P(children='Hot Spots Summary', style={
         'textAlign': 'center',
         'color': colors['text'],
-        'font': {
-                    'color': colors['text'],
-                    'family':"Courier New, monospace",
-                    'size':18,
-                    'textAlign': 'left',
-                }
-    }
-    ),
+        'font-family': 'Courier New, monospace',
+        'fontSize': 24,
+        'marginTop': '10px'
+    }),
+    html.Iframe(id='map', srcDoc = open('map.html','r').read(), width='100%',height='600'),
+
+    html.P(children='Test Reports Summary', style={
+        'textAlign': 'center',
+        'color': colors['text'],
+        'font-family': 'Courier New, monospace',
+        'fontSize': 24,
+        'marginTop': '10px'
+    }),
     dash_table.DataTable(
         data=test_report.to_dict('records'),
         columns=[{'id': c, 'name': c} for c in test_report.columns],
@@ -419,7 +429,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                       'textAlign': 'center',
                       'color': 'white',
                       'font-family': 'Times New Roman',
-                      'fontSize': 20
+                      'fontSize': 28
 
                       },
 
@@ -429,7 +439,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             'color': 'white',
             'fontWeight': 'bold',
             'font-family': 'Times New Roman',
-            'fontSize': 20,
+            'fontSize': 28,
             'marginBottom': '10px'
 
         },
