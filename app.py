@@ -290,6 +290,9 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
     ),
     html.Div(children='C-TRACKER KERALA: A web application  for tracking COVID-19 spread all over Kerala.developed By Harikrishnan K', style={
         'textAlign': 'center',
+        'marginBottom': '10px',
+        'marginTop': '10px',
+        'fontSize':18,
         'color': colors['text']
     }),
         dash_table.DataTable(
@@ -449,4 +452,4 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
 ])
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
