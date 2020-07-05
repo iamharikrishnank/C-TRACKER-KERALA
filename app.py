@@ -107,6 +107,8 @@ test_case=pd.DataFrame(test_case,index=[0])
 test_case_today=pd.DataFrame(test_case_today,index=[0])
 test_report=pd.DataFrame(test_report,index=[0])
 
+def split_uppercase(value):
+    return re.sub(r'([A-Z])', r' \1', value)
 for i in range (0,len(df)):
     
     
@@ -212,6 +214,7 @@ df_daily['recovered']=pd.DataFrame(list_recovered_daily)
 df_daily['confirmed']=pd.DataFrame(list_confirmed_daily)
 df_daily['death']=pd.DataFrame(list_death_daily)
 app = dash.Dash(__name__)
+app.title = 'C-Tracker Kerala'
 server = app.server
 colors = {
     'background': '#111111',
@@ -253,7 +256,6 @@ fig.update_layout(
     ),
     yaxis_showgrid=False,
 )
-
 fig_stack = go.Figure(data=[
     go.Bar(name='Active', x=sorted_active_case.index, y=sorted_active_case.active),
     go.Bar(name='Death', x=sorted_active_case.index, y=sorted_active_case.death)
@@ -288,9 +290,9 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         }
     ),
     html.Div(children='C-TRACKER KERALA: A web application  for tracking COVID-19 spread all over Kerala.developed By Harikrishnan K', style={
-        'textAlign': 'left',
-        'marginBottom': '30px',
-        'marginTop': '30px',
+        'textAlign': 'center',
+        'marginBottom': '10px',
+        'marginTop': '10px',
         'fontSize':8,
         'color': colors['text']
     }),
@@ -332,17 +334,14 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                 'plot_bgcolor': colors['background'],
                 'paper_bgcolor': colors['background'],
                 'title':"Cumulative Summary of Kerala",
-                'margin': {'t': 60},
                 'font': {
                     'color': colors['text'],
                     'family':"Courier New, monospace",
                     'size':18
                 }
-
             }
         }
     ),
-
     dcc.Graph(
         id='covid daily',
         figure={
@@ -357,7 +356,8 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                 'plot_bgcolor': colors['background'],
                 'paper_bgcolor': colors['background'],
                 'title':"Datewise Reporting",
-                'margin': {'t': 60},
+                'marginBottom': '10px',
+                'marginTop': '10px',
 
                 'font': {
                     'color': colors['text'],
@@ -453,4 +453,4 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
 ])
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
