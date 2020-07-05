@@ -1,5 +1,5 @@
 # C-Tracker Kerala
-C-TRACKER KERALA is A web application  for tracking COVID-19 spread all over KeralaC-TRACKER KERALA: A web application  for tracking COVID-19 spread all over Kerala
+C-TRACKER KERALA is A web application  for tracking COVID-19 spread all over Kerala.Daily Updates are available in Real time
 # Datasets
 | Data                                                  | URL                                                         |
 | ----------------------------------------------------- | ----------------------------------------------------------- |
