@@ -214,6 +214,7 @@ df_daily['recovered']=pd.DataFrame(list_recovered_daily)
 df_daily['confirmed']=pd.DataFrame(list_confirmed_daily)
 df_daily['death']=pd.DataFrame(list_death_daily)
 app = dash.Dash(__name__)
+app.title = 'C-Tracker Kerala'
 server = app.server
 colors = {
     'background': '#111111',
