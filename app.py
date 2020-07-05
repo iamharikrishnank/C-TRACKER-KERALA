@@ -292,7 +292,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'textAlign': 'center',
         'marginBottom': '10px',
         'marginTop': '10px',
-        'fontSize':18,
+        'fontSize':8,
         'color': colors['text']
     }),
         dash_table.DataTable(
