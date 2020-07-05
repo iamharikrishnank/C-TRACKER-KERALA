@@ -18,7 +18,7 @@ C-TRACKER KERALA is A web application  for tracking COVID-19 spread all over Ker
 - Dash
 # Install  packages with pip: 
 pip install -r requirements.txt
-# How to run this app
+
 ## How to run this app
 
 (The following instructions apply to Posix/bash. Windows users should check
@@ -42,7 +42,7 @@ pip install -r requirements.txt
 Run the app:
 
 ```bash
-python app.py
+python3 app.py
 ```
 Open a browser at http://127.0.0.1:8050
 # Screenshot
